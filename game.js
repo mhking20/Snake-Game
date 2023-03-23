@@ -1,9 +1,12 @@
 
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
+const btns = document.querySelector(".btns")
+
+
 
 canvas.width = window.screen.width - 50
-canvas.height = window.screen.height -150
+canvas.height = window.screen.height - btns.clientHeight
 
 let gridSize = 15;
 let gridWidth = Math.floor(canvas.width / gridSize);

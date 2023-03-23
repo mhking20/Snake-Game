@@ -1,12 +1,10 @@
-
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
-const btns = document.querySelector(".btns")
+const btns = document.querySelector(".btns");
+const buttons = document.querySelectorAll(".btn");
 
-
-
-canvas.width = window.screen.width - 50
-canvas.height = window.screen.height - btns.clientHeight - 150
+canvas.width = window.screen.width - 50;
+canvas.height = window.screen.height - btns.clientHeight - 150;
 
 let gridSize = 15;
 let gridWidth = Math.floor(canvas.width / gridSize);
@@ -17,12 +15,12 @@ let food = {
   y: Math.floor(Math.random() * gridHeight),
 };
 
-let points = 0
+let points = 0;
 function Food() {
   let foodWidth = Math.floor(Math.random() * gridWidth);
   let foodHeight = Math.floor(Math.random() * gridHeight);
-   console.log(foodWidth * gridSize );
-   console.log(foodHeight * gridSize );
+  console.log(foodWidth * gridSize);
+  console.log(foodHeight * gridSize);
   if (foodWidth * gridSize !== 0 && foodHeight * gridSize !== 0) {
     food = {
       x: foodWidth,
@@ -46,7 +44,19 @@ const snake = [
 ];
 
 let button = "";
-let direction = "";
+
+window.addEventListener("click", (e) => {
+  let btn = e.target;
+  if (btn.classList.contains("up")) {
+    button = "up";
+  } else if (btn.classList.contains("down")) {
+    button = "down";
+  } else if (btn.classList.contains("right")) {
+    button = "right";
+  } else if (btn.classList.contains("left")) {
+    button = "left";
+  }
+});
 
 document.addEventListener("keydown", (e) => {
   switch (e.key) {
@@ -65,17 +75,10 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-$(document).on("swiperight" , () => {
-    return direction = 'right'
-})
-
-let h1 = document.querySelector(".h1")
-h1.textContent = direction
-
 function moveSnake() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.font = "30px"
-  ctx.fillText(`Points , ${points}` , 50 , 50)
+  ctx.font = "30px";
+  ctx.fillText(`Points , ${points}`, 50, 50);
   let head = { x: snake[0].x, y: snake[0].y };
   switch (button) {
     case "":
@@ -93,11 +96,22 @@ function moveSnake() {
     case "Right":
       head.x++;
       break;
+    case "up":
+      head.y--;
+      break;
+    case "down":
+      head.y++;
+      break;
+    case "right":
+      head.x++;
+      break;
+    case "left":
+      head.x--;
+      break;
   }
   snake.unshift(head);
 
   for (let i = 0; i < snake.length; i++) {
-   
     if (i === 0) {
       ctx.fillStyle = "black";
       ctx.fillRect(
@@ -136,7 +150,7 @@ function moveSnake() {
   }
 
   if (head.x === food.x && head.y === food.y) {
-    points += 1
+    points += 1;
     Food();
   } else {
     snake.pop();

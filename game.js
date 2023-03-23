@@ -48,13 +48,13 @@ let button = "";
 window.addEventListener("click", (e) => {
   let btn = e.target;
   if (btn.classList.contains("up")) {
-    button = "up";
+    if (button !== "down") button = "up";
   } else if (btn.classList.contains("down")) {
-    button = "down";
+    if (button !== "up") button = "down";
   } else if (btn.classList.contains("right")) {
-    button = "right";
+    if (button !== "left") button = "right";
   } else if (btn.classList.contains("left")) {
-    button = "left";
+    if (button !== "right") button = "left";
   }
 });
 

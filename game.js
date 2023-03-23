@@ -1,8 +1,9 @@
+
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.screen.width - "50"
-canvas.height = window.screen.height - "200"
+canvas.width = window.screen.width - 50
+canvas.height = window.screen.height -150
 
 let gridSize = 15;
 let gridWidth = Math.floor(canvas.width / gridSize);
@@ -141,5 +142,4 @@ function moveSnake() {
   ctx.fillStyle = "red";
   ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
 }
-
 setInterval(moveSnake, 100);

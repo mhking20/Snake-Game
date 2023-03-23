@@ -1,8 +1,39 @@
 body {
     text-align: center;
+    height: 100vh;
 }
 
 canvas {
     background-color: lightblue;
 }
 
+
+button {
+    margin: 10px 10px;
+    font-size: large;
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 10px;
+    border-top: solid rgb(204, 228, 236);
+    border-left: solid lightgray;
+    border-right: solid rgb(193, 213, 219);
+    border-bottom: solid lightgrey;
+    cursor: pointer;
+}
+
+button:hover{
+    font-size: medium;
+}
+
+.btns {
+    height : 150px;
+    margin: auto;
+}
+
+@media only screen and (max-width : 300px){
+    button{
+        font-size:x-small
+    }
+    button:hover{
+        font-size:xx-small
+    }
+}
